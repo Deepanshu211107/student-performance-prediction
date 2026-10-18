@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Prediction</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 28px 8%;
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .header-content h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .header-content p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        /* ================= INTRO ================= */
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .intro h2 {
+            font-size: 30px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        /* ================= FORM CARD ================= */
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+
+        .form-card h2 {
+            font-size: 23px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .form-description {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            color: #1f2937;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+        }
+
+        /* ================= SCHOOL TYPE ================= */
+
+        .school-group {
+            grid-column: 1 / -1;
+        }
+
+        .school-options {
+            display: flex;
+            gap: 15px;
+        }
+
+        .school-options input {
+            display: none;
+        }
+
+        .school-option {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            background: white;
+            transition: 0.2s;
+        }
+
+        .school-options input:checked + .school-option {
+            border-color: #2563eb;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-weight: bold;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .predict-button {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .predict-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about-section,
+        .methodology-section,
+        .model-info-section {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .about-section h2,
+        .methodology-section h2,
+        .model-info-section h2 {
+            font-size: 23px;
+            color: #111827;
+            margin-bottom: 15px;
+        }
+
+        .about-section p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        /* ================= METHODOLOGY ================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .step-card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #2563eb;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .step-card h3 {
+            font-size: 16px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* ================= MODEL INFORMATION ================= */
+
+        .model-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .model-item {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .model-item strong {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .model-item span {
+            color: #111827;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .model-info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .form-card,
+            .about-section,
+            .methodology-section,
+            .model-info-section {
+                padding: 20px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .model-info {
+                grid-template-columns: 1fr;
+            }
+
+            .school-options {
+                flex-direction: column;
+            }
+
+            .intro h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="header-content">
+
+            <h1>
+                Explainable AI-Based Student Performance Prediction
+            </h1>
+
+            <p>
+                Machine Learning Based Academic Performance Prediction System
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+
+        <!-- ================= INTRODUCTION ================= -->
+
+        <section class="intro">
+
+            <h2>
+                Predict Student Performance
+            </h2>
+
+            <p>
+                Enter the student's information below to estimate
+                their final academic score out of 20 and understand
+                which factors influenced the prediction.
+            </p>
+
+        </section>
+
+
+        <!-- ================= PREDICTION FORM ================= -->
+
+        <section class="form-card">
+
+            <h2>
+                Student Information
+            </h2>
+
+            <p class="form-description">
+                Provide the following information about the student.
+            </p>
+
+
+            <form action="/predict" method="POST">
+
+                <div class="form-grid">
+
+
+                    <!-- SCHOOL -->
+
+                    <div class="form-group school-group">
+
+                        <label>
+                            School Type
+                        </label>
+
+                        <div class="school-options">
+
+                            <input
+                                type="radio"
+                                id="government"
+                                name="school"
+                                value="GP"
+                                checked
+                            >
+
+                            <label
+                                for="government"
+                                class="school-option"
+                            >
+                                Government
+                            </label>
+
+
+                            <input
+                                type="radio"
+                                id="private"
+                                name="school"
+                                value="MS"
+                            >
+
+                            <label
+                                for="private"
+                                class="school-option"
+                            >
+                                Private
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GENDER -->
+
+                    <div class="form-group">
+
+                        <label for="sex">
+                            Gender
+                        </label>
+
+                        <select id="sex" name="sex">
+
+                            <option value="F">
+                                Female
+                            </option>
+
+                            <option value="M">
+                                Male
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- AGE -->
+
+                    <div class="form-group">
+
+                        <label for="age">
+                            Age
+                        </label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            min="15"
+                            max="22"
+                            value="17"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <select id="address" name="address">
+
+                            <option value="U">
+                                Urban
+                            </option>
+
+                            <option value="R">
+                                Rural
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- FAMILY SIZE -->
+
+                    <div class="form-group">
+
+                        <label for="famsize">
+                            Family Size
+                        </label>
+
+                        <select id="famsize" name="famsize">
+
+                            <option value="LE3">
+                                3 or fewer
+                            </option>
+
+                            <option value="GT3">
+                                More than 3
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- PARENT STATUS -->
+
+                    <div class="form-group">
+
+                        <label for="Pstatus">
+                            Parent Status
+                        </label>
+
+                        <select id="Pstatus" name="Pstatus">
+
+                            <option value="T">
+                                Living Together
+                            </option>
+
+                            <option value="A">
+                                Apart
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- MOTHER EDUCATION -->
+
+                    <div class="form-group">
+
+                        <label for="Medu">
+                            Mother's Education
+                        </label>
+
+                        <select id="Medu" name="Medu">
+
+                            <option value="0">
+                                None
+                            </option>
+
+                            <option value="1">
+                                Primary Education
+                            </option>
+
+                            <option value="2">
+                                5th to 9th Grade
+                            </option>
+
+                            <option value="3">
+                                Secondary Education
+                            </option>
+
+                            <option value="4">
+                                Higher Education
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- FATHER EDUCATION -->
+
+                    <div class="form-group">
+
+                        <label for="Fedu">
+                            Father's Education
+                        </label>
+
+                        <select id="Fedu" name="Fedu">
+
+                            <option value="0">
+                                None
+                            </option>
+
+                            <option value="1">
+                                Primary Education
+                            </option>
+
+                            <option value="2">
+                                5th to 9th Grade
+                            </option>
+
+                            <option value="3">
+                                Secondary Education
+                            </option>
+
+                            <option value="4">
+                                Higher Education
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- MOTHER JOB -->
+
+                    <div class="form-group">
+
+                        <label for="Mjob">
+                            Mother's Job
+                        </label>
+
+                        <select id="Mjob" name="Mjob">
+
+                            <option value="teacher">
+                                Teacher
+                            </option>
+
+                            <option value="health">
+                                Health
+                            </option>
+
+                            <option value="services">
+                                Services
+                            </option>
+
+                            <option value="at_home">
+                                At Home
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- FATHER JOB -->
+
+                    <div class="form-group">
+
+                        <label for="Fjob">
+                            Father's Job
+                        </label>
+
+                        <select id="Fjob" name="Fjob">
+
+                            <option value="teacher">
+                                Teacher
+                            </option>
+
+                            <option value="health">
+                                Health
+                            </option>
+
+                            <option value="services">
+                                Services
+                            </option>
+
+                            <option value="at_home">
+                                At Home
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- REASON -->
+
+                    <div class="form-group">
+
+                        <label for="reason">
+                            Reason for Choosing School
+                        </label>
+
+                        <select id="reason" name="reason">
+
+                            <option value="course">
+                                Course
+                            </option>
+
+                            <option value="reputation">
+                                Reputation
+                            </option>
+
+                            <option value="home">
+                                Close to Home
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- GUARDIAN -->
+
+                    <div class="form-group">
+
+                        <label for="guardian">
+                            Guardian
+                        </label>
+
+                        <select id="guardian" name="guardian">
+
+                            <option value="mother">
+                                Mother
+                            </option>
+
+                            <option value="father">
+                                Father
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TRAVEL TIME -->
+
+                    <div class="form-group">
+
+                        <label for="traveltime">
+                            Travel Time
+                        </label>
+
+                        <select id="traveltime" name="traveltime">
+
+                            <option value="1">
+                                Less than 15 minutes
+                            </option>
+
+                            <option value="2">
+                                15 to 30 minutes
+                            </option>
+
+                            <option value="3">
+                                30 minutes to 1 hour
+                            </option>
+
+                            <option value="4">
+                                More than 1 hour
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- STUDY TIME -->
+
+                    <div class="form-group">
+
+                        <label for="studytime">
+                            Study Time
+                        </label>
+
+                        <select id="studytime" name="studytime">
+
+                            <option value="1">
+                                Less than 2 hours
+                            </option>
+
+                            <option value="2">
+                                2 to 5 hours
+                            </option>
+
+                            <option value="3">
+                                5 to 10 hours
+                            </option>
+
+                            <option value="4">
+                                More than 10 hours
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- FAILURES -->
+
+                    <div class="form-group">
+
+                        <label for="failures">
+                            Previous Failures
+                        </label>
+
+                        <input
+                            type="number"
+                            id="failures"
+                            name="failures"
+                            min="0"
+                            max="4"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- SCHOOL SUPPORT -->
+
+                    <div class="form-group">
+
+                        <label for="schoolsup">
+                            School Support
+                        </label>
+
+                        <select id="schoolsup" name="schoolsup">
+
+                            <option value="no">
+                                No
+                            </option>
+
+                            <option value="yes">
+                                Yes
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- FAMILY SUPPORT -->
+
+                    <div class="form-group">
+
+                        <label for="famsup">
+                            Family Support
+                        </label>
+
+                        <select id="famsup" name="famsup">
+
+                            <option value="no">
+                                No
+                            </option>
+
+                            <option value="yes">
+                                Yes
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- PAID CLASSES -->
+
+                    <div class="form-group">
+
+                        <label for="paid">
+                            Paid Classes
+                        </label>
+
+                        <select id="paid" name="paid">
+
+                            <option value="no">
+                                No
+                            </option>
+
+                            <option value="yes">
+                                Yes
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ACTIVITIES -->
+
+                    <div class="form-group">
+
+                        <label for="activities">
+                            Extracurricular Activities
+                        </label>
+
+                        <select id="activities" name="activities">
+
+                            <option value="no">
+                                No
+                            </option>
+
+                            <option value="yes">
+                                Yes
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- NURSERY -->
+
+                    <div class="form-group">
+
+                        <label for="nursery">
+                            Nursery Education
+                        </label>
+
+                        <select id="nursery" name="nursery">
+
+                            <option value="no">
+                                No
+                            </option>
+
+                            <option value="yes">
+                                Yes
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- HIGHER -->
+
+                    <div class="form-group">
+
+                        <label for="higher">
+                            Higher Education Intention
+                        </label>
+
+                        <select id="higher" name="higher">
+
+                            <option value="yes">
+                                Yes
+                            </option>
+
+                            <option value="no">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- INTERNET -->
+
+                    <div class="form-group">
+
+                        <label for="internet">
+                            Internet Access
+                        </label>
+
+                        <select id="internet" name="internet">
+
+                            <option value="yes">
+                                Yes
+                            </option>
+
+                            <option value="no">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- FAMILY RELATIONSHIP -->
+
+                    <div class="form-group">
+
+                        <label for="famrel">
+                            Family Relationship Quality
+                        </label>
+
+                        <select id="famrel" name="famrel">
+
+                            <option value="1">
+                                Very Poor
+                            </option>
+
+                            <option value="2">
+                                Poor
+                            </option>
+
+                            <option value="3">
+                                Average
+                            </option>
+
+                            <option value="4">
+                                Good
+                            </option>
+
+                            <option value="5">
+                                Very Good
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- FREE TIME -->
+
+                    <div class="form-group">
+
+                        <label for="freetime">
+                            Free Time
+                        </label>
+
+                        <select id="freetime" name="freetime">
+
+                            <option value="1">
+                                Very Low
+                            </option>
+
+                            <option value="2">
+                                Low
+                            </option>
+
+                            <option value="3">
+                                Moderate
+                            </option>
+
+                            <option value="4">
+                                High
+                            </option>
+
+                            <option value="5">
+                                Very High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- GOING OUT -->
+
+                    <div class="form-group">
+
+                        <label for="goout">
+                            Going Out
+                        </label>
+
+                        <select id="goout" name="goout">
+
+                            <option value="1">
+                                Very Low
+                            </option>
+
+                            <option value="2">
+                                Low
+                            </option>
+
+                            <option value="3">
+                                Moderate
+                            </option>
+
+                            <option value="4">
+                                High
+                            </option>
+
+                            <option value="5">
+                                Very High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- HEALTH -->
+
+                    <div class="form-group">
+
+                        <label for="health">
+                            Health Status
+                        </label>
+
+                        <select id="health" name="health">
+
+                            <option value="1">
+                                Very Poor
+                            </option>
+
+                            <option value="2">
+                                Poor
+                            </option>
+
+                            <option value="3">
+                                Average
+                            </option>
+
+                            <option value="4">
+                                Good
+                            </option>
+
+                            <option value="5">
+                                Very Good
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ABSENCES -->
+
+                    <div class="form-group">
+
+                        <label for="absences">
+                            Absences
+                        </label>
+
+                        <input
+                            type="number"
+                            id="absences"
+                            name="absences"
+                            min="0"
+                            max="93"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <div class="button-container">
+
+                    <button
+                        type="submit"
+                        class="predict-button"
+                    >
+                        Predict Final Score
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ================= ABOUT PROJECT ================= -->
+
+        <section class="about-section">
+
+            <h2>
+                About the Project
+            </h2>
+
+            <p>
+                The Explainable AI-Based Student Performance Prediction
+                System uses machine learning to estimate a student's
+                final academic score based on demographic, family,
+                social, and academic-related information.
+            </p>
+
+            <p>
+                The system uses a Gradient Boosting regression model
+                to predict the student's final score on a scale of
+                0 to 20. SHAP (SHapley Additive exPlanations) is used
+                to explain which features contributed most strongly
+                to each prediction.
+            </p>
+
+        </section>
+
+
+        <!-- ================= METHODOLOGY ================= -->
+
+        <section class="methodology-section">
+
+            <h2>
+                How the System Works
+            </h2>
+
+
+            <div class="steps">
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <h3>
+                        Student Data
+                    </h3>
+
+                    <p>
+                        The user provides information about the
+                        student's academic, demographic, family
+                        and social background.
+                    </p>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <h3>
+                        Preprocessing
+                    </h3>
+
+                    <p>
+                        Numerical and categorical features are
+                        processed so they can be used by the
+                        machine learning model.
+                    </p>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <h3>
+                        Prediction
+                    </h3>
+
+                    <p>
+                        The Gradient Boosting regression model
+                        estimates the student's final score
+                        out of 20.
+                    </p>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <h3>
+                        Explanation
+                    </h3>
+
+                    <p>
+                        SHAP identifies the features that
+                        contributed most to the model's
+                        predicted score.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MODEL INFORMATION ================= -->
+
+        <section class="model-info-section">
+
+            <h2>
+                Machine Learning Model
+            </h2>
+
+
+            <div class="model-info">
+
+
+                <div class="model-item">
+
+                    <strong>
+                        MODEL
+                    </strong>
+
+                    <span>
+                        Gradient Boosting Regressor
+                    </span>
+
+                </div>
+
+
+                <div class="model-item">
+
+                    <strong>
+                        TARGET
+                    </strong>
+
+                    <span>
+                        Final Grade (G3)
+                    </span>
+
+                </div>
+
+
+                <div class="model-item">
+
+                    <strong>
+                        OUTPUT
+                    </strong>
+
+                    <span>
+                        Score from 0 to 20
+                    </span>
+
+                </div>
+
+
+                <div class="model-item">
+
+                    <strong>
+                        MAE
+                    </strong>
+
+                    <span>
+                        3.05
+                    </span>
+
+                </div>
+
+
+                <div class="model-item">
+
+                    <strong>
+                        MSE
+                    </strong>
+
+                    <span>
+                        14.64
+                    </span>
+
+                </div>
+
+
+                <div class="model-item">
+
+                    <strong>
+                        R² SCORE
+                    </strong>
+
+                    <span>
+                        0.29
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        Explainable AI-Based Student Performance Prediction System
+
+    </footer>
+
+
+</body>
+
+</html>

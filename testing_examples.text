@@ -1,0 +1,116 @@
+We'll test 3 different types of students.
+
+Test 1 — Strong Profile
+
+Use:
+
+Field	Value
+School	Government
+Gender	Female
+Age	16
+Address	Urban
+Family Size	≤3
+Parent Status	Together
+Mother Education	Higher
+Father Education	Higher
+Mother Job	Teacher
+Father Job	Teacher
+Reason	Reputation
+Guardian	Mother
+Travel Time	<15 min
+Study Time	>10 hrs
+Previous Failures	0
+School Support	No
+Family Support	Yes
+Paid Classes	Yes
+Activities	Yes
+Nursery	Yes
+Higher Education	Yes
+Internet	Yes
+Family Relationship	Very good
+Free Time	Low
+Going Out	Low
+Health	Very good
+Absences	2
+
+Record:
+
+Predicted score
+Performance level
+Top SHAP factors
+
+
+
+
+Test 2 — Average Profile
+
+Use:
+
+Field	Value
+School	Private
+Gender	Male
+Age	17
+Address	Urban
+Family Size	>3
+Parent Status	Together
+Mother Education	Secondary
+Father Education	Secondary
+Mother Job	Services
+Father Job	Services
+Reason	Course
+Guardian	Mother
+Travel Time	15–30 min
+Study Time	2–5 hrs
+Previous Failures	1
+School Support	No
+Family Support	Yes
+Paid Classes	No
+Activities	Yes
+Nursery	Yes
+Higher Education	Yes
+Internet	Yes
+Family Relationship	Good
+Free Time	Moderate
+Going Out	Moderate
+Health	Good
+Absences	8
+
+Record the same three things.
+
+
+
+
+Test 3 — Weak/Risk Profile
+
+Use:
+
+Field	Value
+School	Private
+Gender	Male
+Age	18
+Address	Rural
+Family Size	>3
+Parent Status	Apart
+Mother Education	Primary
+Father Education	Primary
+Mother Job	At Home
+Father Job	Other
+Reason	Other
+Guardian	Father
+Travel Time	>1 hr
+Study Time	<2 hrs
+Previous Failures	3
+School Support	Yes
+Family Support	No
+Paid Classes	No
+Activities	No
+Nursery	No
+Higher Education	No
+Internet	No
+Family Relationship	Poor
+Free Time	High
+Going Out	High
+Health	Poor
+Absences	30
+
+Record the same three things.
