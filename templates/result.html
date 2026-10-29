@@ -1,3 +1,4 @@
+<!-- ```html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,518 +6,1171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Prediction Result</title>
+    <title>Prediction Results | EduPredict X</title>
+    <meta name="description"
+          content="Explore student performance predictions and explainable AI insights with EduPredict X.">
 
     <style>
+        /* =========================
+           GLOBAL STYLES
+        ========================= */
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --navy: #0f172a;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --background: #f5f8ff;
+            --white: #ffffff;
+            --green: #059669;
+            --green-light: #ecfdf5;
+            --red: #dc2626;
+            --red-light: #fef2f2;
+            --shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
+            font-family: Inter, -apple-system, BlinkMacSystemFont,
+                         "Segoe UI", Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
             min-height: 100vh;
         }
 
-        /* ================= HEADER ================= */
-
-        header {
-            background: #111827;
-            color: white;
-            padding: 22px 8%;
+        a {
+            color: inherit;
         }
 
-        .header-content {
-            max-width: 1100px;
-            margin: auto;
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
         }
-
-        .header-content h1 {
-            font-size: 26px;
-            margin-bottom: 6px;
-        }
-
-        .header-content p {
-            color: #cbd5e1;
-            font-size: 14px;
-        }
-
-        /* ================= MAIN ================= */
 
         .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
+            width: min(1160px, 92%);
+            margin: 0 auto;
         }
 
-        .page-title {
-            text-align: center;
-            margin-bottom: 30px;
+        .section {
+            margin-bottom: 28px;
         }
 
-        .page-title h2 {
-            font-size: 30px;
-            color: #111827;
-            margin-bottom: 8px;
+        .section-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: var(--shadow);
         }
 
-        .page-title p {
-            color: #64748b;
-            font-size: 15px;
+        .section-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 24px;
         }
 
-        /* ================= SCORE CARD ================= */
-
-        .score-card {
-            background: white;
-            border-radius: 18px;
-            padding: 35px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
+        .section-icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 22px;
         }
 
-        .score-label {
-            color: #64748b;
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .score {
-            font-size: 64px;
-            font-weight: bold;
-            color: #111827;
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: 21px;
+            line-height: 1.35;
             margin-bottom: 5px;
         }
 
-        .out-of {
-            color: #64748b;
-            font-size: 15px;
+        .section-heading p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.22);
+        }
+
+        .brand-logo svg {
+            width: 27px;
+            height: 27px;
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
+            color: var(--navy);
+        }
+
+        .brand-name span {
+            color: var(--primary);
+        }
+
+        .brand-tagline {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 0.4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links .nav-button {
+            color: white;
+            background: var(--primary);
+            padding: 10px 17px;
+            border-radius: 10px;
+        }
+
+        .nav-links .nav-button:hover {
+            color: white;
+            background: var(--primary-dark);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 90% 10%,
+                    rgba(96, 165, 250, 0.22), transparent 30%),
+                linear-gradient(125deg, #0f172a, #172554 62%, #1e40af);
+            color: white;
+            padding: 48px 0 65px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            right: -80px;
+            bottom: -190px;
+            box-shadow:
+                0 0 0 35px rgba(255, 255, 255, 0.025),
+                0 0 0 70px rgba(255, 255, 255, 0.02);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border: 1px solid rgba(191, 219, 254, 0.28);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.07);
+            color: #dbeafe;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             margin-bottom: 20px;
         }
 
-        .performance {
-            display: inline-block;
-            padding: 9px 20px;
-            border-radius: 30px;
-            background: #e0f2fe;
-            color: #0369a1;
-            font-weight: bold;
-            font-size: 14px;
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            background: #60a5fa;
+            border-radius: 50%;
         }
 
-        /* ================= SCORE BAR ================= */
-
-        .score-bar-container {
-            margin-top: 28px;
-            text-align: left;
+        .hero h1 {
+            max-width: 760px;
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1.15;
+            letter-spacing: -1.4px;
+            margin-bottom: 16px;
         }
 
-        .score-bar-labels {
+        .hero h1 span {
+            color: #93c5fd;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: #cbd5e1;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #e2e8f0;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .hero-meta .check {
+            color: #86efac;
+            font-weight: 800;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        main {
+            position: relative;
+            margin-top: -27px;
+            z-index: 2;
+            padding-bottom: 25px;
+        }
+
+        .result-heading {
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
-            color: #64748b;
-            margin-bottom: 8px;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 20px;
         }
 
-        .score-bar {
+        .result-heading h2 {
+            color: var(--navy);
+            font-size: 22px;
+            letter-spacing: -0.4px;
+        }
+
+        .result-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 13px;
+            border: 1px solid #bfdbfe;
+            border-radius: 30px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* =========================
+           SCORE CARD
+        ========================= */
+
+        .score-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+            padding: 34px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: white;
+            box-shadow: var(--shadow);
+            margin-bottom: 28px;
+        }
+
+        .score-overline {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .score-overline span {
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 10px;
+            font-size: 17px;
+        }
+
+        .score-number {
+            color: var(--navy);
+            font-size: clamp(54px, 7vw, 78px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1.05;
+        }
+
+        .score-number small {
+            color: #94a3b8;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0;
+        }
+
+        .score-caption {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .performance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 17px;
+            padding: 9px 14px;
+            border: 1px solid #bfdbfe;
+            border-radius: 30px;
+            background: var(--primary-light);
+            color: #1d4ed8;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .score-right {
+            padding-left: 30px;
+            border-left: 1px solid var(--border);
+        }
+
+        .score-right h3 {
+            color: var(--navy);
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .score-right > p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 22px;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 11px;
+            margin-bottom: 9px;
+        }
+
+        .score-track {
             width: 100%;
-            height: 14px;
-            background: #e5e7eb;
+            height: 13px;
+            background: #e9eef8;
             border-radius: 20px;
             overflow: hidden;
         }
 
         .score-fill {
-            height: 100%;
             width: 0;
-            background: #2563eb;
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
             border-radius: 20px;
-            transition: width 0.8s ease;
+            transition: width 1s ease;
         }
 
-        /* ================= EXPLANATION SECTION ================= */
-
-        .explanation-section {
-            background: white;
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
+        .score-scale {
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 10px;
+            margin-top: 8px;
         }
 
-        .explanation-section h2 {
-            font-size: 23px;
-            color: #111827;
-            margin-bottom: 8px;
+        .score-explainer {
+            margin-top: 23px;
+            padding: 14px 15px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            color: #475569;
+            font-size: 12px;
+            line-height: 1.7;
         }
 
-        .explanation-section>p {
-            color: #64748b;
-            font-size: 14px;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        /* ================= EXPLANATION CARDS ================= */
+        /* =========================
+           SHAP EXPLANATIONS
+        ========================= */
 
         .explanations {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
         }
 
         .explanation-card {
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 18px;
-            background: #fafafa;
+            min-width: 0;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .explanation-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
         }
 
         .feature-header {
             display: flex;
+            align-items: flex-start;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
+            gap: 12px;
+            margin-bottom: 13px;
         }
 
         .feature-name {
-            font-weight: bold;
-            color: #111827;
-            font-size: 15px;
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 750;
+            overflow-wrap: anywhere;
         }
 
-        .arrow {
-            font-size: 22px;
-            font-weight: bold;
+        .direction-icon {
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            width: 31px;
+            height: 31px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 800;
         }
 
-        .arrow.positive {
-            color: #16a34a;
+        .direction-icon.positive {
+            color: var(--green);
+            background: var(--green-light);
         }
 
-        .arrow.negative {
-            color: #dc2626;
+        .direction-icon.negative {
+            color: var(--red);
+            background: var(--red-light);
         }
 
         .feature-value {
-            color: #64748b;
-            font-size: 13px;
-            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 11px;
+        }
+
+        .feature-value strong {
+            color: var(--text);
+            font-weight: 700;
         }
 
         .feature-direction {
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
         }
 
         .feature-direction.positive {
-            color: #16a34a;
+            color: var(--green);
         }
 
         .feature-direction.negative {
-            color: #dc2626;
+            color: var(--red);
         }
 
         .shap-value {
-            margin-top: 8px;
-            font-size: 12px;
-            color: #94a3b8;
+            border-top: 1px solid #eef2f7;
+            margin-top: 14px;
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 11px;
         }
 
-        /* ================= NOTE ================= */
+        .shap-value strong {
+            color: var(--navy);
+            font-size: 12px;
+        }
 
         .note {
-            background: #f8fafc;
-            border-left: 4px solid #2563eb;
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
             padding: 16px;
-            border-radius: 8px;
-            margin-top: 25px;
+            border: 1px solid #bfdbfe;
+            background: #f0f7ff;
+            border-radius: 13px;
+        }
+
+        .note-icon {
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-weight: 800;
+        }
+
+        .note h3 {
+            color: #1e40af;
+            font-size: 12px;
+            margin-bottom: 4px;
         }
 
         .note p {
             color: #475569;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        /* ================= BUTTON ================= */
-
-        .button-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .predict-again {
-            display: inline-block;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            padding: 13px 28px;
-            border-radius: 9px;
-            font-size: 14px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-
-        .predict-again:hover {
-            background: #1d4ed8;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #94a3b8;
             font-size: 12px;
+            line-height: 1.7;
         }
 
-        /* ================= MODEL PERFORMANCE ================= */
-
-        .model-section {
-            background: white;
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-        }
-
-        .model-section h2 {
-            font-size: 23px;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .model-description {
-            color: #64748b;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-
-        /* Metrics */
+        /* =========================
+           MODEL METRICS
+        ========================= */
 
         .metrics {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
             margin-bottom: 30px;
         }
 
         .metric-card {
-            background: #f8fafc;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
+            padding: 21px;
+            border: 1px solid var(--border);
+            background: #f8faff;
+            border-radius: 16px;
         }
 
-        .metric-value {
-            font-size: 30px;
-            font-weight: bold;
-            color: #2563eb;
-            margin-bottom: 5px;
+        .metric-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 17px;
         }
 
         .metric-name {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .metric-symbol {
+            display: grid;
+            place-items: center;
+            width: 33px;
+            height: 33px;
+            border-radius: 10px;
+            background: #e8efff;
+            color: var(--primary);
             font-size: 15px;
-            font-weight: bold;
-            color: #111827;
+            font-weight: 800;
+        }
+
+        .metric-value {
+            color: var(--navy);
+            font-size: 30px;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.8px;
         }
 
         .metric-description {
-            font-size: 12px;
-            color: #64748b;
-            margin-top: 5px;
-        }
-
-
-        /* Comparison */
-
-        .comparison-title {
-            font-size: 18px;
-            color: #111827;
-            margin-bottom: 15px;
-        }
-
-        .comparison-table {
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .table-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            padding: 14px 16px;
-            border-bottom: 1px solid #e5e7eb;
-            font-size: 13px;
-            align-items: center;
-        }
-
-        .table-row:last-child {
-            border-bottom: none;
-        }
-
-        .table-header {
-            font-weight: bold;
-            background: #f8fafc;
-            color: #475569;
-        }
-
-        .selected-model {
-            background: #eff6ff;
-            font-weight: 600;
-        }
-
-        .model-note {
-            margin-top: 20px;
-            padding: 16px;
-            background: #f8fafc;
-            border-left: 4px solid #2563eb;
-            border-radius: 8px;
-            color: #475569;
-            font-size: 13px;
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 9px;
             line-height: 1.6;
         }
 
-        /* ================= RESPONSIVE ================= */
+        /* =========================
+           MODEL COMPARISON
+        ========================= */
 
-        @media (max-width: 700px) {
+        .comparison-title {
+            color: var(--navy);
+            font-size: 16px;
+            margin: 25px 0 14px;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            min-width: 540px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px 17px;
+            border-bottom: 1px solid #edf1f7;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .comparison-table th {
+            color: #475569;
+            background: #f8fafc;
+            font-weight: 750;
+        }
+
+        .comparison-table td {
+            color: #475569;
+        }
+
+        .comparison-table td:first-child {
+            color: var(--navy);
+            font-weight: 650;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr.selected-model td {
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 750;
+        }
+
+        .selected-tag {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 3px 7px;
+            border-radius: 20px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .model-note {
+            margin-top: 18px;
+            padding: 17px;
+            border: 1px solid #dbeafe;
+            border-radius: 13px;
+            background: #f5f9ff;
+            color: #475569;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .model-note strong {
+            color: var(--navy);
+        }
+
+        /* =========================
+           ACTIONS
+        ========================= */
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 32px 0 45px;
+        }
+
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 21px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 750;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.18);
+        }
+
+        .button-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .button-secondary {
+            color: var(--navy);
+            background: white;
+            border-color: var(--border);
+        }
+
+        .button-secondary:hover {
+            background: #f8fafc;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            border-top: 1px solid var(--border);
+            background: white;
+            padding: 28px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .footer-brand {
+            color: var(--navy);
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .footer-brand span {
+            color: var(--primary);
+        }
+
+        .footer-tagline {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .footer-credit {
+            color: var(--muted);
+            font-size: 11px;
+            text-align: right;
+        }
+
+        .footer-credit strong {
+            color: var(--text);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 760px) {
+            .nav-inner {
+                min-height: 70px;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .nav-links a:not(.nav-button) {
+                display: none;
+            }
+
+            .hero {
+                padding: 38px 0 55px;
+            }
+
+            .score-card {
+                grid-template-columns: 1fr;
+                gap: 27px;
+                padding: 25px;
+            }
+
+            .score-right {
+                padding-left: 0;
+                padding-top: 25px;
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+
+            .section-card {
+                padding: 23px;
+            }
 
             .metrics {
                 grid-template-columns: 1fr;
             }
 
-            .table-row {
-                grid-template-columns: 2fr 1fr 1fr 1fr;
-                font-size: 12px;
-                padding: 12px 10px;
+            .metric-card {
+                padding: 18px;
             }
 
+            .metric-top {
+                margin-bottom: 10px;
+            }
+
+            .metric-value {
+                font-size: 27px;
+            }
+        }
+
+        @media (max-width: 520px) {
             .container {
-                width: 94%;
-                margin: 25px auto;
+                width: 92%;
             }
 
-            .score-card {
-                padding: 25px 18px;
+            .brand-name {
+                font-size: 17px;
             }
 
-            .score {
-                font-size: 52px;
+            .brand-tagline {
+                font-size: 9px;
             }
 
-            .explanation-section {
-                padding: 20px;
+            .brand-logo {
+                width: 39px;
+                height: 39px;
+            }
+
+            .nav-links .nav-button {
+                padding: 9px 11px;
+                font-size: 11px;
+            }
+
+            .hero h1 {
+                letter-spacing: -0.7px;
+            }
+
+            .hero-description {
+                font-size: 13px;
+            }
+
+            .result-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .result-heading h2 {
+                font-size: 20px;
+            }
+
+            .score-number {
+                font-size: 61px;
             }
 
             .explanations {
                 grid-template-columns: 1fr;
             }
 
-            .page-title h2 {
-                font-size: 24px;
+            .section-card {
+                padding: 19px;
+                border-radius: 17px;
             }
 
-            header {
-                padding: 18px 5%;
+            .section-heading h2 {
+                font-size: 18px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-credit {
+                text-align: left;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
 
-
 <body>
 
-    <!-- ================= HEADER ================= -->
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
 
-    <header>
+    <nav class="navbar">
+        <div class="container nav-inner">
 
-        <div class="header-content">
+            <a href="/" class="brand" aria-label="EduPredict X home">
+                <div class="brand-logo">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg"
+                         aria-hidden="true">
+                        <path d="M2.5 9L12 4L21.5 9L12 14L2.5 9Z"
+                              stroke="currentColor"
+                              stroke-width="1.8"
+                              stroke-linejoin="round"/>
+                        <path d="M6.5 11.2V15.4C9.8 18.2 14.2 18.2 17.5 15.4V11.2"
+                              stroke="currentColor"
+                              stroke-width="1.8"
+                              stroke-linecap="round"/>
+                        <path d="M21.5 9V15"
+                              stroke="currentColor"
+                              stroke-width="1.8"
+                              stroke-linecap="round"/>
+                        <circle cx="21.5" cy="17" r="1.1"
+                                fill="currentColor"/>
+                    </svg>
+                </div>
 
-            <h1>
-                Student Performance Prediction System
-            </h1>
+                <div>
+                    <div class="brand-name">EduPredict <span>X</span></div>
+                    <span class="brand-tagline">
+                        Student Performance Intelligence
+                    </span>
+                </div>
+            </a>
 
-            <p>
-                Explainable AI-Based Student Performance Prediction
-            </p>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="#explanations">Explainability</a>
+                <a href="#model">Model Insights</a>
+                <a href="/" class="nav-button">New Prediction ↗</a>
+            </div>
 
         </div>
+    </nav>
 
-    </header>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+        <div class="container hero-content">
+
+            <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Explainable Artificial Intelligence
+            </div>
+
+            <h1>
+                Understand the prediction.<br>
+                <span>Discover the insights.</span>
+            </h1>
+
+            <p class="hero-description">
+                Your student performance report is ready. Explore the
+                predicted final grade, understand which features influenced
+                the result, and review the model's evaluation metrics.
+            </p>
+
+            <div class="hero-meta">
+                <span><span class="check">✓</span> Machine Learning Prediction</span>
+                <span><span class="check">✓</span> SHAP Explainability</span>
+                <span><span class="check">✓</span> Model Evaluation</span>
+            </div>
+
+        </div>
+    </section>
 
 
-    <!-- ================= MAIN CONTENT ================= -->
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
 
     <main class="container">
 
+        <div class="result-heading">
+            <div>
+                <h2>Student Performance Report</h2>
+                <p>Review the prediction and its supporting insights.</p>
+            </div>
 
-        <!-- PAGE TITLE -->
-
-        <div class="page-title">
-
-            <h2>
-                Prediction Result
-            </h2>
-
-            <p>
-                Here is the predicted final performance of the student.
-            </p>
-
+            <div class="result-badge">
+                <span aria-hidden="true">✦</span>
+                AI-generated report
+            </div>
         </div>
 
 
-        <!-- ================= SCORE CARD ================= -->
+        <!-- =========================
+             PREDICTED SCORE
+        ========================== -->
 
-        <section class="score-card">
+        <section class="score-card" aria-labelledby="scoreTitle">
 
-            <div class="score-label">
-                Predicted Final Score
+            <div class="score-left">
+
+                <div class="score-overline">
+                    <span aria-hidden="true">◎</span>
+                    Predicted final grade
+                </div>
+
+                <div class="score-number" id="scoreTitle">
+                    {{ prediction }}
+                    <small>/ 20</small>
+                </div>
+
+                <p class="score-caption">
+                    Estimated final grade on the dataset's 0–20 scale.
+                </p>
+
+                <div class="performance-badge">
+                    <span aria-hidden="true">●</span>
+                    {{ performance_level }}
+                </div>
+
             </div>
 
 
-            <div class="score">
-                {{ score_percentage }}
-            </div>
+            <div class="score-right">
 
-            <div class="out-of">
-                out of 100
-            </div>
+                <h3>Score overview</h3>
 
+                <p>
+                    The progress bar represents the predicted grade
+                    as a proportion of the maximum score of 20.
+                </p>
 
-            <div class="performance">
-                {{ performance_level }}
-            </div>
+                <div class="progress-labels">
+                    <span>Predicted score</span>
+                    <strong>{{ prediction }} / 20</strong>
+                </div>
 
+                <div class="score-track"
+                     role="progressbar"
+                     aria-label="Predicted score out of 20"
+                     aria-valuemin="0"
+                     aria-valuemax="20"
+                     aria-valuenow="{{ prediction }}">
 
-            <!-- SCORE BAR -->
-
-            <div class="score-bar-container">
-
-                <div class="score-bar-labels">
-
-                    <span>0</span>
-
-                    <span>50</span>
-
-                    <span>100</span>
+                    <div
+                        id="scoreFill"
+                        class="score-fill"
+                        data-width="{{ prediction }}">
+                    </div>
 
                 </div>
 
+                <div class="score-scale">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                    <span>15</span>
+                    <span>20</span>
+                </div>
 
-                <div class="score-bar">
-
-                    <div id="scoreFill" class="score-fill" data-width="{{ score_percentage }}">
-                    </div>
-
+                <div class="score-explainer">
+                    <strong>What does this mean?</strong><br>
+                    This is a model-generated estimate, not a guaranteed
+                    exam result. Actual academic performance may differ.
                 </div>
 
             </div>
@@ -524,29 +1178,37 @@
         </section>
 
 
-        <!-- ================= SHAP EXPLANATION ================= -->
+        <!-- =========================
+             SHAP EXPLANATIONS
+        ========================== -->
 
-        <section class="explanation-section">
+        <section class="section section-card"
+                 id="explanations"
+                 aria-labelledby="explanationTitle">
 
-            <h2>
-                Why did the model make this prediction?
-            </h2>
+            <div class="section-heading">
 
+                <div class="section-icon" aria-hidden="true">✳</div>
 
-            <p>
-                The following factors had the strongest influence on
-                the predicted score according to SHAP explainability analysis.
-            </p>
+                <div>
+                    <h2 id="explanationTitle">
+                        Why did the model make this prediction?
+                    </h2>
+
+                    <p>
+                        SHAP helps explain how individual input features
+                        influenced this specific prediction.
+                    </p>
+                </div>
+
+            </div>
 
 
             <div class="explanations">
 
                 {% for item in explanations %}
 
-                <div class="explanation-card">
-
-
-                    <!-- FEATURE NAME + ARROW -->
+                <article class="explanation-card">
 
                     <div class="feature-header">
 
@@ -554,16 +1216,19 @@
                             {{ item.feature }}
                         </div>
 
-
                         {% if item.positive %}
 
-                        <div class="arrow positive">
+                        <div class="direction-icon positive"
+                             title="Positive contribution"
+                             aria-label="Positive contribution">
                             ↑
                         </div>
 
                         {% else %}
 
-                        <div class="arrow negative">
+                        <div class="direction-icon negative"
+                             title="Negative contribution"
+                             aria-label="Negative contribution">
                             ↓
                         </div>
 
@@ -572,248 +1237,283 @@
                     </div>
 
 
-                    <!-- STUDENT VALUE -->
-
                     <div class="feature-value">
-
                         Student value:
-
-                        <strong>
-                            {{ item.value }}
-                        </strong>
-
+                        <strong>{{ item.value }}</strong>
                     </div>
 
-
-                    <!-- DIRECTION -->
 
                     {% if item.positive %}
 
                     <div class="feature-direction positive">
-                        Increased predicted score
+                        ↑ Increased predicted score
                     </div>
 
                     {% else %}
 
                     <div class="feature-direction negative">
-                        Decreased predicted score
+                        ↓ Decreased predicted score
                     </div>
 
                     {% endif %}
 
 
-                    <!-- SHAP VALUE -->
-
                     <div class="shap-value">
-
-                        SHAP contribution:
-
-                        {{ item.shap }}
-
+                        <span>SHAP contribution (grade points)</span>
+                        <strong>{{ item.shap }}</strong>
                     </div>
 
-
-                </div>
+                </article>
 
                 {% endfor %}
 
             </div>
 
 
-            <!-- ================= NOTE ================= -->
-
             <div class="note">
 
-                <p>
+                <div class="note-icon" aria-hidden="true">i</div>
 
-                    <strong>Note:</strong>
+                <div>
+                    <h3>How to interpret these explanations</h3>
 
-                    SHAP values show how each feature contributed to
-                    the model's prediction. A positive contribution
-                    pushes the predicted score higher, while a negative
-                    contribution pushes it lower. These values describe
-                    the model's reasoning and do not necessarily imply
-                    causation.
-
-                </p>
+                    <p>
+                        A positive SHAP contribution pushes the model's
+                        prediction higher relative to its baseline, while
+                        a negative contribution pushes it lower. The
+                        magnitude indicates the contribution in the model's
+                        output units. These explanations describe model
+                        behavior; they do not establish that a feature
+                        causes a particular academic outcome.
+                    </p>
+                </div>
 
             </div>
 
         </section>
 
-        <!-- ================= MODEL PERFORMANCE ================= -->
 
-        <section class="model-section">
+        <!-- =========================
+             MODEL PERFORMANCE
+        ========================== -->
 
-            <h2>Model Performance</h2>
+        <section class="section section-card"
+                 id="model"
+                 aria-labelledby="modelTitle">
 
-            <p class="model-description">
-                The prediction is generated using a Gradient Boosting
-                regression model. The following metrics show how the model
-                performed on the test dataset.
-            </p>
+            <div class="section-heading">
 
+                <div class="section-icon" aria-hidden="true">⌁</div>
 
-            <!-- Metrics -->
+                <div>
+                    <h2 id="modelTitle">Model Performance</h2>
+
+                    <p>
+                        Evaluation metrics summarize how the regression
+                        model performed on the test dataset.
+                    </p>
+                </div>
+
+            </div>
+
 
             <div class="metrics">
 
-                <div class="metric-card">
+                <article class="metric-card">
+
+                    <div class="metric-top">
+                        <span class="metric-name">MEAN ABSOLUTE ERROR</span>
+                        <span class="metric-symbol" aria-hidden="true">±</span>
+                    </div>
 
                     <div class="metric-value">
                         {{ model_metrics.mae }}
                     </div>
 
-                    <div class="metric-name">
-                        MAE
+                    <p class="metric-description">
+                        MAE measures the average absolute difference
+                        between predicted and actual grades. Lower is better.
+                    </p>
+
+                </article>
+
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+                        <span class="metric-name">MEAN SQUARED ERROR</span>
+                        <span class="metric-symbol" aria-hidden="true">²</span>
                     </div>
-
-                    <div class="metric-description">
-                        Mean Absolute Error
-                    </div>
-
-                </div>
-
-
-                <div class="metric-card">
 
                     <div class="metric-value">
                         {{ model_metrics.mse }}
                     </div>
 
-                    <div class="metric-name">
-                        MSE
+                    <p class="metric-description">
+                        MSE averages squared prediction errors, penalizing
+                        larger errors more strongly. Lower is better.
+                    </p>
+
+                </article>
+
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+                        <span class="metric-name">R-SQUARED</span>
+                        <span class="metric-symbol" aria-hidden="true">R²</span>
                     </div>
-
-                    <div class="metric-description">
-                        Mean Squared Error
-                    </div>
-
-                </div>
-
-
-                <div class="metric-card">
 
                     <div class="metric-value">
                         {{ model_metrics.r2 }}
                     </div>
 
-                    <div class="metric-name">
-                        R²
-                    </div>
+                    <p class="metric-description">
+                        R² indicates how much variation the model explains
+                        relative to a mean-prediction baseline.
+                    </p>
 
-                    <div class="metric-description">
-                        Coefficient of Determination
-                    </div>
-
-                </div>
+                </article>
 
             </div>
 
 
-            <!-- Model Comparison -->
+            <!-- MODEL COMPARISON -->
 
-            <h3 class="comparison-title">
-                Model Comparison
-            </h3>
+            <h3 class="comparison-title">Compare Regression Models</h3>
 
+            <div class="table-wrap">
 
-            <div class="comparison-table">
+                <table class="comparison-table">
 
-                <div class="table-row table-header">
+                    <thead>
+                        <tr>
+                            <th scope="col">Model</th>
+                            <th scope="col">MAE ↓</th>
+                            <th scope="col">MSE ↓</th>
+                            <th scope="col">R² ↑</th>
+                        </tr>
+                    </thead>
 
-                    <div>Model</div>
-                    <div>MAE</div>
-                    <div>MSE</div>
-                    <div>R²</div>
+                    <tbody>
 
-                </div>
+                        {% for model in model_comparison %}
 
+                        <tr class="{% if model.name == model_name %}selected-model{% endif %}">
 
-                {% for model in model_comparison %}
+                            <td>
+                                {{ model.name }}
 
-                <div class="table-row
-            {% if model.name == model_name %}
-                selected-model
-            {% endif %}">
+                                {% if model.name == model_name %}
+                                <span class="selected-tag">Selected</span>
+                                {% endif %}
+                            </td>
 
-                    <div>
-                        {{ model.name }}
+                            <td>{{ model.mae }}</td>
+                            <td>{{ model.mse }}</td>
+                            <td>{{ model.r2 }}</td>
 
-                        {% if model.name == model_name %}
-                        <strong> ✓</strong>
-                        {% endif %}
-                    </div>
+                        </tr>
 
-                    <div>
-                        {{ model.mae }}
-                    </div>
+                        {% endfor %}
 
-                    <div>
-                        {{ model.mse }}
-                    </div>
+                    </tbody>
 
-                    <div>
-                        {{ model.r2 }}
-                    </div>
-
-                </div>
-
-                {% endfor %}
+                </table>
 
             </div>
 
 
             <div class="model-note">
-
                 <strong>Why Gradient Boosting?</strong>
-
-                Gradient Boosting was selected because it achieved the
-                lowest Mean Absolute Error among the tested models.
-
-                A lower MAE means that, on average, the predicted score
-                is closer to the actual score.
-
+                The project selected Gradient Boosting because it achieved
+                the lowest Mean Absolute Error among the tested models.
+                Lower MAE means smaller average absolute prediction errors
+                on the evaluation dataset. This does not guarantee that it
+                will outperform every other model on new data.
             </div>
 
         </section>
 
-        <!-- ================= BUTTON ================= -->
 
-        <div class="button-container">
+        <!-- =========================
+             ACTION BUTTONS
+        ========================== -->
 
-            <a href="/" class="predict-again">
+        <div class="actions">
+
+            <a href="/" class="button button-primary">
+                <span aria-hidden="true">＋</span>
                 Predict Another Student
+            </a>
+
+            <a href="#explanations" class="button button-secondary">
+                <span aria-hidden="true">↗</span>
+                Explore AI Explanations
             </a>
 
         </div>
 
-
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
-    <footer>
+    <footer class="footer">
 
-        Explainable AI-Based Student Performance Prediction System
+        <div class="container footer-inner">
+
+            <div>
+                <div class="footer-brand">
+                    EduPredict <span>X</span>
+                </div>
+
+                <p class="footer-tagline">
+                    Predict. Understand. Improve.
+                </p>
+            </div>
+
+            <div class="footer-credit">
+                <p>Explainable AI for Student Performance Prediction</p>
+                <p>Designed &amp; Developed by <strong>Deepanshu</strong></p>
+            </div>
+
+        </div>
 
     </footer>
 
 
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- =========================
+         SCORE BAR ANIMATION
+    ========================== -->
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const scoreFill = document.getElementById("scoreFill");
 
-        const scoreFill = document.getElementById("scoreFill");
+            if (!scoreFill) {
+                return;
+            }
 
-        const width = scoreFill.getAttribute("data-width");
+            const score = Number.parseFloat(
+                scoreFill.getAttribute("data-width")
+            );
 
-        scoreFill.style.width = width + "%";
+            if (!Number.isFinite(score)) {
+                return;
+            }
 
+            const boundedScore = Math.max(0, Math.min(20, score));
+            const percentage = (boundedScore / 20) * 100;
+
+            requestAnimationFrame(function () {
+                scoreFill.style.width = percentage + "%";
+            });
+        });
     </script>
 
-
 </body>
-
 </html>
+```

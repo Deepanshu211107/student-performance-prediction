@@ -195,9 +195,9 @@ def predict():
     # Score Percentage
     # --------------------------------------
 
-    score_percentage = (
-        prediction / 20
-    ) * 100
+    # score_percentage = (
+    #     prediction / 20
+    # ) * 100
 
 
     # ======================================
@@ -380,7 +380,7 @@ def predict():
         "result.html",
         prediction=round(prediction, 2),
         performance_level=performance_level,
-        score_percentage=round(score_percentage, 2),
+        # score_percentage=round(score_percentage, 2),
         explanations=explanations,
 
         model_name="Gradient Boosting",
