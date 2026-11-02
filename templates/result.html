@@ -1,4 +1,3 @@
-<!-- ```html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,10 +10,6 @@
           content="Explore student performance predictions and explainable AI insights with EduPredict X.">
 
     <style>
-        /* =========================
-           GLOBAL STYLES
-        ========================= */
-
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
@@ -108,9 +103,7 @@
             font-size: 13px;
         }
 
-        /* =========================
-           NAVIGATION
-        ========================= */
+        /* NAVIGATION */
 
         .navbar {
             background: rgba(255, 255, 255, 0.96);
@@ -201,9 +194,23 @@
             background: var(--primary-dark);
         }
 
-        /* =========================
-           HERO
-        ========================= */
+        /* THEME BUTTON */
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 13px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* HERO */
 
         .hero {
             position: relative;
@@ -300,9 +307,7 @@
             font-weight: 800;
         }
 
-        /* =========================
-           MAIN CONTENT
-        ========================= */
+        /* MAIN CONTENT */
 
         main {
             position: relative;
@@ -345,9 +350,7 @@
             white-space: nowrap;
         }
 
-        /* =========================
-           SCORE CARD
-        ========================= */
+        /* SCORE CARD */
 
         .score-card {
             display: grid;
@@ -399,8 +402,7 @@
             font-weight: 600;
             letter-spacing: 0;
         }
-
-        .score-caption {
+                .score-caption {
             color: var(--muted);
             font-size: 13px;
             margin-top: 12px;
@@ -480,9 +482,7 @@
             line-height: 1.7;
         }
 
-        /* =========================
-           SHAP EXPLANATIONS
-        ========================= */
+        /* SHAP EXPLANATIONS */
 
         .explanations {
             display: grid;
@@ -615,9 +615,83 @@
             line-height: 1.7;
         }
 
-        /* =========================
-           MODEL METRICS
-        ========================= */
+        /* PERSONALIZED RECOMMENDATIONS */
+
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .recommendation-card {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--white);
+        }
+
+        .recommendation-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 13px;
+        }
+
+        .recommendation-title {
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 750;
+        }
+
+        .recommendation-icon {
+            font-size: 22px;
+        }
+
+        .priority {
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .priority.high {
+            color: #fecaca;
+            background: #7f1d1d;
+        }
+
+        .priority.medium {
+            color: #fde68a;
+            background: #78350f;
+        }
+
+        .priority.low {
+            color: #bbf7d0;
+            background: #14532d;
+        }
+
+        .recommendation-reason,
+        .recommendation-action {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+            margin-top: 9px;
+        }
+
+        .recommendation-action strong {
+            color: var(--text);
+        }
+
+        .recommendation-empty {
+            padding: 18px;
+            border-radius: 13px;
+            background: var(--primary-light);
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        /* MODEL METRICS */
 
         .metrics {
             display: grid;
@@ -674,9 +748,7 @@
             line-height: 1.6;
         }
 
-        /* =========================
-           MODEL COMPARISON
-        ========================= */
+        /* MODEL COMPARISON */
 
         .comparison-title {
             color: var(--navy);
@@ -759,9 +831,7 @@
             color: var(--navy);
         }
 
-        /* =========================
-           ACTIONS
-        ========================= */
+        /* ACTION BUTTONS */
 
         .actions {
             display: flex;
@@ -810,9 +880,7 @@
             background: #f8fafc;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
+        /* FOOTER */
 
         .footer {
             border-top: 1px solid var(--border);
@@ -853,9 +921,7 @@
             color: var(--text);
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
+        /* RESPONSIVE */
 
         @media (max-width: 760px) {
             .nav-inner {
@@ -899,74 +965,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .metric-card {
-                padding: 18px;
-            }
-
-            .metric-top {
-                margin-bottom: 10px;
-            }
-
-            .metric-value {
-                font-size: 27px;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .container {
-                width: 92%;
-            }
-
-            .brand-name {
-                font-size: 17px;
-            }
-
-            .brand-tagline {
-                font-size: 9px;
-            }
-
-            .brand-logo {
-                width: 39px;
-                height: 39px;
-            }
-
-            .nav-links .nav-button {
-                padding: 9px 11px;
-                font-size: 11px;
-            }
-
-            .hero h1 {
-                letter-spacing: -0.7px;
-            }
-
-            .hero-description {
-                font-size: 13px;
-            }
-
-            .result-heading {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .result-heading h2 {
-                font-size: 20px;
-            }
-
-            .score-number {
-                font-size: 61px;
-            }
-
-            .explanations {
+            .explanations,
+            .recommendations {
                 grid-template-columns: 1fr;
-            }
-
-            .section-card {
-                padding: 19px;
-                border-radius: 17px;
-            }
-
-            .section-heading h2 {
-                font-size: 18px;
             }
 
             .footer-inner {
@@ -977,154 +978,315 @@
             .footer-credit {
                 text-align: left;
             }
+        }
 
-            .actions {
-                flex-direction: column;
+        @media (max-width: 480px) {
+            .container {
+                width: 91%;
             }
 
-            .button {
-                width: 100%;
+            .brand-name {
+                font-size: 17px;
+            }
+
+            .brand-tagline {
+                font-size: 9px;
+            }
+
+            .theme-toggle {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+
+            .result-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .score-card {
+                padding: 21px;
+            }
+
+            .section-card {
+                padding: 19px;
+            }
+
+            .section-heading h2 {
+                font-size: 18px;
             }
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
-            }
+        /* DARK THEME */
+
+        body.dark-theme {
+            --primary: #60a5fa;
+            --primary-dark: #3b82f6;
+            --primary-light: #172b46;
+            --navy: #e2e8f0;
+            --text: #d1d5db;
+            --muted: #9ca3af;
+            --border: #263449;
+            --background: #080d18;
+            --white: #111827;
+            --green: #4ade80;
+            --green-light: #143326;
+            --red: #f87171;
+            --red-light: #3b2027;
+            --shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        body.dark-theme .navbar,
+        body.dark-theme .footer {
+            background: #0b1220;
+            border-color: #263449;
+        }
+
+        body.dark-theme .section-card,
+        body.dark-theme .score-card,
+        body.dark-theme .explanation-card,
+        body.dark-theme .recommendation-card {
+            background: #111827;
+            border-color: #263449;
+        }
+
+        body.dark-theme .metric-card {
+            background: #131e30;
+            border-color: #263449;
+        }
+
+        body.dark-theme .score-track {
+            background: #263449;
+        }
+
+        body.dark-theme .score-explainer {
+            background: #131e30;
+            border-color: #263449;
+            color: #b6c2d2;
+        }
+
+        body.dark-theme .note {
+            background: #13243a;
+            border-color: #24456c;
+        }
+
+        body.dark-theme .note-icon {
+            background: #1c3554;
+            color: #93c5fd;
+        }
+
+        body.dark-theme .note h3 {
+            color: #93c5fd;
+        }
+
+        body.dark-theme .note p {
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .shap-value {
+            border-color: #263449;
+        }
+
+        body.dark-theme .comparison-table th {
+            background: #172338;
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .comparison-table td {
+            color: #cbd5e1;
+            border-color: #263449;
+        }
+
+        body.dark-theme .comparison-table td:first-child {
+            color: #e2e8f0;
+        }
+
+        body.dark-theme .comparison-table tr.selected-model td {
+            background: #172d49;
+            color: #93c5fd;
+        }
+
+        body.dark-theme .selected-tag {
+            background: #1e3a5f;
+            color: #bfdbfe;
+        }
+
+        body.dark-theme .model-note {
+            background: #13243a;
+            border-color: #24456c;
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .model-note strong {
+            color: #e2e8f0;
+        }
+
+        body.dark-theme .button-secondary {
+            background: #172338;
+            color: #e2e8f0;
+            border-color: #334155;
+        }
+
+        body.dark-theme .button-secondary:hover {
+            background: #1e293b;
+        }
+
+        body.dark-theme .result-badge {
+            background: #172d49;
+            border-color: #294c72;
+            color: #bfdbfe;
+        }
+
+        body.dark-theme .performance-badge {
+            background: #172d49;
+            border-color: #294c72;
+            color: #bfdbfe;
+        }
+
+        body.dark-theme .priority.high {
+            background: #4c1d24;
+            color: #fecaca;
+        }
+
+        body.dark-theme .priority.medium {
+            background: #493317;
+            color: #fde68a;
+        }
+
+        body.dark-theme .priority.low {
+            background: #153b2c;
+            color: #bbf7d0;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
-
+    <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="container nav-inner">
 
-            <a href="/" class="brand" aria-label="EduPredict X home">
+            <a href="/" class="brand">
                 <div class="brand-logo">
                     <svg viewBox="0 0 24 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg"
-                         aria-hidden="true">
-                        <path d="M2.5 9L12 4L21.5 9L12 14L2.5 9Z"
-                              stroke="currentColor"
-                              stroke-width="1.8"
-                              stroke-linejoin="round"/>
-                        <path d="M6.5 11.2V15.4C9.8 18.2 14.2 18.2 17.5 15.4V11.2"
-                              stroke="currentColor"
-                              stroke-width="1.8"
-                              stroke-linecap="round"/>
-                        <path d="M21.5 9V15"
-                              stroke="currentColor"
-                              stroke-width="1.8"
-                              stroke-linecap="round"/>
-                        <circle cx="21.5" cy="17" r="1.1"
-                                fill="currentColor"/>
+                         stroke="currentColor" stroke-width="2">
+                        <path d="M4 19V5M4 19H21"/>
+                        <path d="M8 15l4-5 3 2 5-7"/>
                     </svg>
                 </div>
 
                 <div>
-                    <div class="brand-name">EduPredict <span>X</span></div>
+                    <div class="brand-name">
+                        EduPredict <span>X</span>
+                    </div>
                     <span class="brand-tagline">
-                        Student Performance Intelligence
+                        Predict. Understand. Improve.
                     </span>
                 </div>
             </a>
 
             <div class="nav-links">
                 <a href="/">Home</a>
-                <a href="#explanations">Explainability</a>
-                <a href="#model">Model Insights</a>
-                <a href="/" class="nav-button">New Prediction ↗</a>
+                <a href="#explanations">AI Insights</a>
+                <a href="#recommendations">Recommendations</a>
+                <a href="#metrics">Model Performance</a>
+
+                <button class="theme-toggle" id="themeToggle"
+                        type="button" aria-label="Toggle theme">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeText">Dark Mode</span>
+                </button>
             </div>
 
         </div>
     </nav>
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
-
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="container hero-content">
 
             <div class="eyebrow">
                 <span class="eyebrow-dot"></span>
-                Explainable Artificial Intelligence
+                AI-POWERED STUDENT ANALYSIS
             </div>
 
             <h1>
-                Understand the prediction.<br>
-                <span>Discover the insights.</span>
+                Your Performance
+                <span>Insights</span>
             </h1>
 
             <p class="hero-description">
-                Your student performance report is ready. Explore the
-                predicted final grade, understand which features influenced
-                the result, and review the model's evaluation metrics.
+                Your prediction is ready. Explore your estimated academic
+                performance, understand the factors influencing the model's
+                prediction, and discover recommendations for improvement.
             </p>
 
             <div class="hero-meta">
-                <span><span class="check">✓</span> Machine Learning Prediction</span>
-                <span><span class="check">✓</span> SHAP Explainability</span>
-                <span><span class="check">✓</span> Model Evaluation</span>
+                <span>
+                    <span class="check">✓</span>
+                    Machine Learning Prediction
+                </span>
+
+                <span>
+                    <span class="check">✓</span>
+                    SHAP Explainability
+                </span>
+
+                <span>
+                    <span class="check">✓</span>
+                    Personalized Recommendations
+                </span>
             </div>
 
         </div>
     </section>
 
 
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
-
+    <!-- MAIN CONTENT -->
     <main class="container">
 
+        <!-- RESULT HEADING -->
         <div class="result-heading">
+
             <div>
-                <h2>Student Performance Report</h2>
-                <p>Review the prediction and its supporting insights.</p>
+                <h2>Prediction Overview</h2>
+                <p>Here is your estimated academic performance.</p>
             </div>
 
             <div class="result-badge">
-                <span aria-hidden="true">✦</span>
-                AI-generated report
+                ✓ Prediction Generated
             </div>
+
         </div>
 
 
-        <!-- =========================
-             PREDICTED SCORE
-        ========================== -->
-
-        <section class="score-card" aria-labelledby="scoreTitle">
+        <!-- SCORE CARD -->
+        <section class="score-card">
 
             <div class="score-left">
 
                 <div class="score-overline">
-                    <span aria-hidden="true">◎</span>
-                    Predicted final grade
+                    <span>📊</span>
+                    PREDICTED FINAL GRADE
                 </div>
 
-                <div class="score-number" id="scoreTitle">
+                <div class="score-number">
                     {{ prediction }}
                     <small>/ 20</small>
                 </div>
 
                 <p class="score-caption">
-                    Estimated final grade on the dataset's 0–20 scale.
+                    Estimated final academic grade
                 </p>
 
                 <div class="performance-badge">
-                    <span aria-hidden="true">●</span>
-                    {{ performance_level }}
+                    {% if performance_level == "Below Passing" %}
+                        ⚠️ Below Passing
+                    {% elif performance_level == "Average" %}
+                        ◈ Average Performance
+                    {% else %}
+                        ✓ Good Performance
+                    {% endif %}
                 </div>
 
             </div>
@@ -1132,31 +1294,22 @@
 
             <div class="score-right">
 
-                <h3>Score overview</h3>
+                <h3>Performance Scale</h3>
 
                 <p>
-                    The progress bar represents the predicted grade
-                    as a proportion of the maximum score of 20.
+                    Your predicted score on a scale of 0 to 20.
                 </p>
 
                 <div class="progress-labels">
-                    <span>Predicted score</span>
-                    <strong>{{ prediction }} / 20</strong>
+                    <span>Predicted Score</span>
+                    <strong>{{ prediction }}/20</strong>
                 </div>
 
-                <div class="score-track"
-                     role="progressbar"
-                     aria-label="Predicted score out of 20"
-                     aria-valuemin="0"
-                     aria-valuemax="20"
-                     aria-valuenow="{{ prediction }}">
-
-                    <div
-                        id="scoreFill"
-                        class="score-fill"
-                        data-width="{{ prediction }}">
+                <div class="score-track">
+                    <div class="score-fill"
+                         id="scoreFill"
+                         data-score="{{ prediction }}">
                     </div>
-
                 </div>
 
                 <div class="score-scale">
@@ -1168,9 +1321,10 @@
                 </div>
 
                 <div class="score-explainer">
-                    <strong>What does this mean?</strong><br>
-                    This is a model-generated estimate, not a guaranteed
-                    exam result. Actual academic performance may differ.
+                    <strong>How to interpret this:</strong>
+                    The model estimates your final grade using the
+                    information provided. This is a prediction, not
+                    a guaranteed examination result.
                 </div>
 
             </div>
@@ -1178,37 +1332,31 @@
         </section>
 
 
-        <!-- =========================
-             SHAP EXPLANATIONS
-        ========================== -->
-
-        <section class="section section-card"
-                 id="explanations"
-                 aria-labelledby="explanationTitle">
+        <!-- SHAP EXPLANATIONS -->
+        <section class="section section-card" id="explanations">
 
             <div class="section-heading">
 
-                <div class="section-icon" aria-hidden="true">✳</div>
+                <div class="section-icon">🧠</div>
 
                 <div>
-                    <h2 id="explanationTitle">
-                        Why did the model make this prediction?
-                    </h2>
-
+                    <h2>Explainable AI Insights</h2>
                     <p>
-                        SHAP helps explain how individual input features
-                        influenced this specific prediction.
+                        Understand which input features influenced
+                        the model's prediction.
                     </p>
                 </div>
 
             </div>
 
 
+            {% if explanations %}
+
             <div class="explanations">
 
                 {% for item in explanations %}
 
-                <article class="explanation-card">
+                <div class="explanation-card">
 
                     <div class="feature-header">
 
@@ -1216,75 +1364,75 @@
                             {{ item.feature }}
                         </div>
 
-                        {% if item.positive %}
+                        <div class="direction-icon
+                            {% if item.positive %}
+                                positive
+                            {% else %}
+                                negative
+                            {% endif %}">
 
-                        <div class="direction-icon positive"
-                             title="Positive contribution"
-                             aria-label="Positive contribution">
-                            ↑
+                            {{ item.arrow }}
+
                         </div>
-
-                        {% else %}
-
-                        <div class="direction-icon negative"
-                             title="Negative contribution"
-                             aria-label="Negative contribution">
-                            ↓
-                        </div>
-
-                        {% endif %}
 
                     </div>
 
 
                     <div class="feature-value">
-                        Student value:
+                        Your input:
                         <strong>{{ item.value }}</strong>
                     </div>
 
 
-                    {% if item.positive %}
+                    <div class="feature-direction
+                        {% if item.positive %}
+                            positive
+                        {% else %}
+                            negative
+                        {% endif %}">
 
-                    <div class="feature-direction positive">
-                        ↑ Increased predicted score
+                        {{ item.direction }}
+
                     </div>
-
-                    {% else %}
-
-                    <div class="feature-direction negative">
-                        ↓ Decreased predicted score
-                    </div>
-
-                    {% endif %}
 
 
                     <div class="shap-value">
-                        <span>SHAP contribution (grade points)</span>
-                        <strong>{{ item.shap }}</strong>
+
+                        <span>SHAP Contribution</span>
+
+                        <strong>
+                            {{ "%+.3f"|format(item.shap) }}
+                        </strong>
+
                     </div>
 
-                </article>
+                </div>
 
                 {% endfor %}
 
             </div>
 
+            {% else %}
+
+            <p>No explanation data is available.</p>
+
+            {% endif %}
+
 
             <div class="note">
 
-                <div class="note-icon" aria-hidden="true">i</div>
+                <div class="note-icon">i</div>
 
                 <div>
-                    <h3>How to interpret these explanations</h3>
+                    <h3>Understanding SHAP Values</h3>
 
                     <p>
-                        A positive SHAP contribution pushes the model's
-                        prediction higher relative to its baseline, while
-                        a negative contribution pushes it lower. The
-                        magnitude indicates the contribution in the model's
-                        output units. These explanations describe model
-                        behavior; they do not establish that a feature
-                        causes a particular academic outcome.
+                        SHAP explains how individual features contribute
+                        to the model's prediction. Positive values push
+                        the predicted grade higher relative to the model's
+                        baseline, while negative values push it lower.
+                        These relationships describe model behaviour,
+                        not proof of cause and effect.
                     </p>
                 </div>
 
@@ -1293,24 +1441,125 @@
         </section>
 
 
-        <!-- =========================
-             MODEL PERFORMANCE
-        ========================== -->
-
-        <section class="section section-card"
-                 id="model"
-                 aria-labelledby="modelTitle">
+        <!-- PERSONALIZED RECOMMENDATIONS -->
+        <section class="section section-card" id="recommendations">
 
             <div class="section-heading">
 
-                <div class="section-icon" aria-hidden="true">⌁</div>
+                <div class="section-icon">🎯</div>
 
                 <div>
-                    <h2 id="modelTitle">Model Performance</h2>
+                    <h2>Personalized Improvement Recommendations</h2>
 
                     <p>
-                        Evaluation metrics summarize how the regression
-                        model performed on the test dataset.
+                        Practical suggestions based on the information
+                        you provided.
+                    </p>
+                </div>
+
+            </div>
+
+
+            {% if recommendations %}
+
+            <div class="recommendations">
+
+                {% for item in recommendations %}
+
+                <div class="recommendation-card">
+
+                    <div class="recommendation-top">
+
+                        <div>
+                            <div class="recommendation-title">
+                                {{ item.title }}
+                            </div>
+                        </div>
+
+                        <span class="recommendation-icon">
+                            {{ item.icon }}
+                        </span>
+
+                    </div>
+
+
+                    <span class="priority
+                        {% if item.priority == 'High' %}
+                            high
+                        {% elif item.priority == 'Medium' %}
+                            medium
+                        {% else %}
+                            low
+                        {% endif %}">
+
+                        {{ item.priority }} Priority
+
+                    </span>
+
+
+                    <p class="recommendation-reason">
+                        <strong>Why this suggestion?</strong><br>
+                        {{ item.reason }}
+                    </p>
+
+
+                    <p class="recommendation-action">
+                        <strong>What you can do:</strong><br>
+                        {{ item.action }}
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="recommendation-empty">
+                Keep maintaining your current academic routine.
+                Continue monitoring your attendance, study habits
+                and academic progress.
+            </div>
+
+            {% endif %}
+
+
+            <div class="note">
+
+                <div class="note-icon">💡</div>
+
+                <div>
+                    <h3>About These Recommendations</h3>
+
+                    <p>
+                        These suggestions are generated using predefined
+                        rules based on your submitted information.
+                        They are intended as general academic guidance
+                        and are not generated by the trained prediction
+                        model. They do not guarantee an improvement
+                        in your final grade.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MODEL PERFORMANCE -->
+        <section class="section section-card" id="metrics">
+
+            <div class="section-heading">
+
+                <div class="section-icon">📈</div>
+
+                <div>
+                    <h2>Model Performance</h2>
+
+                    <p>
+                        Evaluation metrics of the selected
+                        Gradient Boosting model.
                     </p>
                 </div>
 
@@ -1319,11 +1568,14 @@
 
             <div class="metrics">
 
-                <article class="metric-card">
+                <div class="metric-card">
 
                     <div class="metric-top">
-                        <span class="metric-name">MEAN ABSOLUTE ERROR</span>
-                        <span class="metric-symbol" aria-hidden="true">±</span>
+                        <span class="metric-name">
+                            Mean Absolute Error
+                        </span>
+
+                        <span class="metric-symbol">MAE</span>
                     </div>
 
                     <div class="metric-value">
@@ -1331,18 +1583,21 @@
                     </div>
 
                     <p class="metric-description">
-                        MAE measures the average absolute difference
-                        between predicted and actual grades. Lower is better.
+                        Average absolute difference between actual
+                        and predicted grades.
                     </p>
 
-                </article>
+                </div>
 
 
-                <article class="metric-card">
+                <div class="metric-card">
 
                     <div class="metric-top">
-                        <span class="metric-name">MEAN SQUARED ERROR</span>
-                        <span class="metric-symbol" aria-hidden="true">²</span>
+                        <span class="metric-name">
+                            Mean Squared Error
+                        </span>
+
+                        <span class="metric-symbol">MSE</span>
                     </div>
 
                     <div class="metric-value">
@@ -1350,18 +1605,20 @@
                     </div>
 
                     <p class="metric-description">
-                        MSE averages squared prediction errors, penalizing
-                        larger errors more strongly. Lower is better.
+                        Average squared prediction error.
                     </p>
 
-                </article>
+                </div>
 
 
-                <article class="metric-card">
+                <div class="metric-card">
 
                     <div class="metric-top">
-                        <span class="metric-name">R-SQUARED</span>
-                        <span class="metric-symbol" aria-hidden="true">R²</span>
+                        <span class="metric-name">
+                            R-Squared Score
+                        </span>
+
+                        <span class="metric-symbol">R²</span>
                     </div>
 
                     <div class="metric-value">
@@ -1369,18 +1626,20 @@
                     </div>
 
                     <p class="metric-description">
-                        R² indicates how much variation the model explains
-                        relative to a mean-prediction baseline.
+                        Proportion of target variation explained
+                        by the model on the evaluation data.
                     </p>
 
-                </article>
+                </div>
 
             </div>
 
 
             <!-- MODEL COMPARISON -->
+            <h3 class="comparison-title">
+                Model Comparison
+            </h3>
 
-            <h3 class="comparison-title">Compare Regression Models</h3>
 
             <div class="table-wrap">
 
@@ -1388,29 +1647,36 @@
 
                     <thead>
                         <tr>
-                            <th scope="col">Model</th>
-                            <th scope="col">MAE ↓</th>
-                            <th scope="col">MSE ↓</th>
-                            <th scope="col">R² ↑</th>
+                            <th>Model</th>
+                            <th>MAE</th>
+                            <th>MSE</th>
+                            <th>R² Score</th>
                         </tr>
                     </thead>
+
 
                     <tbody>
 
                         {% for model in model_comparison %}
 
-                        <tr class="{% if model.name == model_name %}selected-model{% endif %}">
+                        <tr class="{% if model.name == model_name %}
+                                      selected-model
+                                   {% endif %}">
 
                             <td>
                                 {{ model.name }}
 
                                 {% if model.name == model_name %}
-                                <span class="selected-tag">Selected</span>
+                                    <span class="selected-tag">
+                                        Selected
+                                    </span>
                                 {% endif %}
                             </td>
 
                             <td>{{ model.mae }}</td>
+
                             <td>{{ model.mse }}</td>
+
                             <td>{{ model.r2 }}</td>
 
                         </tr>
@@ -1425,42 +1691,41 @@
 
 
             <div class="model-note">
-                <strong>Why Gradient Boosting?</strong>
-                The project selected Gradient Boosting because it achieved
-                the lowest Mean Absolute Error among the tested models.
-                Lower MAE means smaller average absolute prediction errors
-                on the evaluation dataset. This does not guarantee that it
-                will outperform every other model on new data.
+
+                <strong>Selected Model: {{ model_name }}</strong><br>
+
+                Gradient Boosting achieved the lowest MAE among
+                the models evaluated in this project.
+
+                The R² score of {{ model_metrics.r2 }} indicates
+                modest explanatory power. Predictions should be
+                interpreted as estimates rather than guaranteed
+                academic outcomes.
+
             </div>
 
         </section>
 
 
-        <!-- =========================
-             ACTION BUTTONS
-        ========================== -->
-
+        <!-- ACTION BUTTONS -->
         <div class="actions">
 
             <a href="/" class="button button-primary">
-                <span aria-hidden="true">＋</span>
-                Predict Another Student
+                ← Make Another Prediction
             </a>
 
-            <a href="#explanations" class="button button-secondary">
-                <span aria-hidden="true">↗</span>
-                Explore AI Explanations
-            </a>
+            <button type="button"
+                    class="button button-secondary"
+                    onclick="window.print()">
+                🖨 Print Results
+            </button>
 
         </div>
 
     </main>
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
+    <!-- FOOTER -->
     <footer class="footer">
 
         <div class="container footer-inner">
@@ -1470,14 +1735,15 @@
                     EduPredict <span>X</span>
                 </div>
 
-                <p class="footer-tagline">
+                <div class="footer-tagline">
                     Predict. Understand. Improve.
-                </p>
+                </div>
             </div>
 
+
             <div class="footer-credit">
-                <p>Explainable AI for Student Performance Prediction</p>
-                <p>Designed &amp; Developed by <strong>Deepanshu</strong></p>
+                © 2026 EduPredict X<br>
+                Created by <strong>Deepanshu</strong>
             </div>
 
         </div>
@@ -1485,35 +1751,95 @@
     </footer>
 
 
-    <!-- =========================
-         SCORE BAR ANIMATION
-    ========================== -->
-
+    <!-- JAVASCRIPT -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const scoreFill = document.getElementById("scoreFill");
 
-            if (!scoreFill) {
-                return;
+        // =====================================
+        // THEME MANAGEMENT
+        // =====================================
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+        const themeIcon =
+            document.getElementById("themeIcon");
+
+        const themeText =
+            document.getElementById("themeText");
+
+
+        function applyTheme(theme) {
+
+            if (theme === "dark") {
+
+                document.body.classList.add("dark-theme");
+
+                themeIcon.textContent = "☀️";
+                themeText.textContent = "Light Mode";
+
+            } else {
+
+                document.body.classList.remove("dark-theme");
+
+                themeIcon.textContent = "🌙";
+                themeText.textContent = "Dark Mode";
+
             }
 
-            const score = Number.parseFloat(
-                scoreFill.getAttribute("data-width")
-            );
+            localStorage.setItem("edupredict-theme", theme);
+        }
 
-            if (!Number.isFinite(score)) {
-                return;
-            }
 
-            const boundedScore = Math.max(0, Math.min(20, score));
-            const percentage = (boundedScore / 20) * 100;
+        // Load saved theme
 
-            requestAnimationFrame(function () {
-                scoreFill.style.width = percentage + "%";
-            });
+        const savedTheme =
+            localStorage.getItem("edupredict-theme") || "light";
+
+        applyTheme(savedTheme);
+
+
+        // Toggle theme
+
+        themeToggle.addEventListener("click", function () {
+
+            const isDark =
+                document.body.classList.contains("dark-theme");
+
+            applyTheme(isDark ? "light" : "dark");
+
         });
+
+
+        // =====================================
+        // SCORE PROGRESS BAR
+        // =====================================
+
+        window.addEventListener("DOMContentLoaded", function () {
+
+            const scoreFill =
+                document.getElementById("scoreFill");
+
+            if (scoreFill) {
+
+                let score =
+                    parseFloat(scoreFill.dataset.score);
+
+                score = Math.max(0, Math.min(20, score));
+
+                const percentage = (score / 20) * 100;
+
+                setTimeout(function () {
+
+                    scoreFill.style.width =
+                        percentage + "%";
+
+                }, 200);
+
+            }
+
+        });
+
     </script>
 
 </body>
 </html>
-```

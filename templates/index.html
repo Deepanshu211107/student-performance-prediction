@@ -1,4 +1,3 @@
-<!-- ```html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -941,6 +940,144 @@
                 animation-duration: 0.01ms !important;
             }
         }
+
+        /* MULTI-STEP FORM */
+        .form-step { display: none; animation: stepFade .25s ease; }
+        .form-step.active { display: block; }
+        @keyframes stepFade { from { opacity: .35; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .step-navigation { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; }
+        .step-button { border: 1px solid var(--border); border-radius: 12px; padding: 11px 20px; font-weight: 700; cursor: pointer; transition: .2s; }
+        .back-button { color: var(--text); background: var(--surface); }
+        .next-button { color: white; background: var(--primary); border-color: var(--primary); }
+        .step-button:disabled { opacity: .4; cursor: not-allowed; }
+        .step-progress { flex: 1; max-width: 220px; text-align: center; color: var(--muted); font-size: 12px; font-weight: 700; }
+        .step-progress-track { height: 6px; background: var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 7px; }
+        .step-progress-track span { display: block; width: 33.333%; height: 100%; background: var(--primary); border-radius: inherit; transition: width .25s ease; }
+        .nav-actions { display: flex; align-items: center; gap: 14px; }
+        .theme-toggle { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 999px; padding: 9px 13px; color: var(--text); background: var(--surface); cursor: pointer; font-size: 13px; font-weight: 700; white-space: nowrap; }
+        .theme-toggle:hover { border-color: var(--primary); }
+        [hidden] { display: none !important; }
+
+        /* DARK THEME — deep charcoal/navy surfaces; no white panels */
+        body.dark-theme {
+            --text: #d5deed;
+            --muted: #98a8c0;
+            --border: #2a3850;
+            --surface: #151f31;
+            --background: #0b1220;
+            --primary-light: #1d3152;
+            color-scheme: dark;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        body.dark-theme .site-header {
+            background: #101a2b;
+            border-color: var(--border);
+        }
+
+        body.dark-theme .brand-caption,
+        body.dark-theme .nav-links a { color: var(--muted); }
+
+        body.dark-theme .hero {
+            background: radial-gradient(ellipse at 85% 15%, rgba(70, 105, 180, .16), transparent 36%),
+                        linear-gradient(120deg, #101a2b 0%, #14233b 58%, #192b49 100%);
+            color: #d5deed;
+        }
+
+        body.dark-theme .hero-description,
+        body.dark-theme .visual-foot { color: #aebbd0; }
+
+        body.dark-theme .feature-strip,
+        body.dark-theme .form-card,
+        body.dark-theme .content-card,
+        body.dark-theme .stat-card,
+        body.dark-theme .model-card,
+        body.dark-theme .form-card-header,
+        body.dark-theme .form-body {
+            background: #151f31;
+            background-image: none;
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        body.dark-theme .feature + .feature { border-color: var(--border); }
+        body.dark-theme .feature h3,
+        body.dark-theme .form-group label,
+        body.dark-theme .field-label,
+        body.dark-theme .form-section-title,
+        body.dark-theme .content-card h2,
+        body.dark-theme .form-card-header h3,
+        body.dark-theme .model-card h2,
+        body.dark-theme .process-item h3 { color: var(--text); }
+
+        body.dark-theme .form-group input,
+        body.dark-theme .form-group select,
+        body.dark-theme input,
+        body.dark-theme select,
+        body.dark-theme textarea {
+            background: #0e1828;
+            color: #d5deed;
+            border-color: #34445e;
+        }
+
+        body.dark-theme input::placeholder { color: #8191aa; }
+        body.dark-theme select option { background: #0e1828; color: #d5deed; }
+
+        body.dark-theme .school-option,
+        body.dark-theme .nav-badge,
+        body.dark-theme .required-badge {
+            background: #1b2a41;
+            color: #c5d2e6;
+            border-color: #34445e;
+        }
+
+        body.dark-theme .school-option:hover,
+        body.dark-theme .school-options input:checked + .school-option {
+            background: #203451;
+            border-color: #587bc4;
+        }
+
+        body.dark-theme .school-option-symbol,
+        body.dark-theme .school-options input:checked + .school-option .school-option-symbol {
+            background: #263b5a;
+            color: #c5d5f0;
+        }
+
+        body.dark-theme .about-highlight,
+        body.dark-theme .model-item {
+            background: #101b2d;
+            color: #b9c8df;
+            border-color: #2d405d;
+        }
+
+        body.dark-theme .site-footer { background: #0e1726; border-color: var(--border); }
+        body.dark-theme .footer-credit { color: #8292aa; }
+        body.dark-theme .back-button,
+        body.dark-theme .theme-toggle {
+            background: #1a2940;
+            color: #d5deed;
+            border-color: #34445e;
+        }
+
+        body.dark-theme .button-primary {
+            background: #263a5b;
+            color: #dce5f4;
+            border-color: #405779;
+        }
+        body.dark-theme .button-primary:hover { background: #30486e; }
+        body.dark-theme .next-button,
+        body.dark-theme .predict-button { color: #e0e8f5; }
+        body.dark-theme .step-progress-track { background: #2a3850; }
+        @media (max-width: 760px) {
+            .nav-actions { gap: 8px; }
+            .nav-actions .nav-badge { display: none; }
+            .theme-toggle { padding: 8px 10px; }
+            .theme-toggle-label { display: none; }
+            .step-navigation { gap: 9px; }
+            .step-button { padding: 10px 13px; }
+        }
+
     </style>
 </head>
 
@@ -973,7 +1110,14 @@
                 <a href="#model">Model</a>
             </div>
 
-            <div class="nav-badge">✦ Explainable AI</div>
+            <div class="nav-actions">
+                <div class="nav-badge">✦ Explainable AI</div>
+                <button type="button" class="theme-toggle" id="themeToggle"
+                        aria-label="Switch to dark theme" title="Switch theme">
+                    <span id="themeIcon" aria-hidden="true">🌙</span>
+                    <span class="theme-toggle-label">Dark mode</span>
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -1100,6 +1244,7 @@
 
                     <form action="/predict" method="POST" id="studentForm">
 
+                        <div class="form-step active" data-step="1">
                         <!-- SECTION 1 -->
                         <div class="form-section-title">
                             <span class="section-number">01</span>
@@ -1244,6 +1389,9 @@
                         </div>
 
 
+                        </div><!-- /step 1 -->
+
+                        <div class="form-step" data-step="2">
                         <!-- SECTION 2 -->
                         <div class="form-section-title">
                             <span class="section-number">02</span>
@@ -1332,6 +1480,9 @@
                         </div>
 
 
+                        </div><!-- /step 2 -->
+
+                        <div class="form-step" data-step="3">
                         <!-- SECTION 3 -->
                         <div class="form-section-title">
                             <span class="section-number">03</span>
@@ -1404,8 +1555,19 @@
                         </div>
 
 
+                        </div><!-- /step 3 -->
+
+                        <div class="step-navigation">
+                            <button type="button" class="step-button back-button" id="backButton" disabled>← Back</button>
+                            <div class="step-progress" aria-live="polite">
+                                <div class="step-progress-track"><span id="stepProgressFill"></span></div>
+                                <span id="stepProgressText">Step 1 of 3</span>
+                            </div>
+                            <button type="button" class="step-button next-button" id="nextButton">Next →</button>
+                        </div>
+
                         <!-- SUBMIT -->
-                        <div class="form-submit">
+                        <div class="form-submit" id="formSubmit" hidden>
                             <p class="submit-note">
                                 Your inputs are processed by the prediction
                                 model. The result includes an estimated grade
@@ -1578,18 +1740,79 @@
 
 
     <script>
+        // Three-step form navigation: all fields remain in one form and are
+        // submitted together to the existing Flask /predict endpoint.
         const studentForm = document.getElementById("studentForm");
+        const steps = Array.from(document.querySelectorAll(".form-step"));
+        const backButton = document.getElementById("backButton");
+        const nextButton = document.getElementById("nextButton");
+        const formSubmit = document.getElementById("formSubmit");
+        const progressFill = document.getElementById("stepProgressFill");
+        const progressText = document.getElementById("stepProgressText");
         const predictButton = document.getElementById("predictButton");
+        let currentStep = 0;
 
-        studentForm.addEventListener("submit", function () {
-            if (studentForm.checkValidity()) {
-                predictButton.disabled = true;
-                predictButton.style.opacity = "0.75";
-                predictButton.innerHTML = "Generating Prediction...";
+        function showStep(index) {
+            currentStep = index;
+            steps.forEach((step, i) => step.classList.toggle("active", i === index));
+            backButton.disabled = index === 0;
+            nextButton.hidden = index === steps.length - 1;
+            formSubmit.hidden = index !== steps.length - 1;
+            progressFill.style.width = `${((index + 1) / steps.length) * 100}%`;
+            progressText.textContent = `Step ${index + 1} of ${steps.length}`;
+        }
+
+        function validateCurrentStep() {
+            const fields = Array.from(steps[currentStep].querySelectorAll("input, select, textarea"));
+            for (const field of fields) {
+                if (!field.checkValidity()) {
+                    field.reportValidity();
+                    field.focus();
+                    return false;
+                }
             }
+            return true;
+        }
+
+        nextButton.addEventListener("click", () => {
+            if (validateCurrentStep()) showStep(Math.min(currentStep + 1, steps.length - 1));
         });
+        backButton.addEventListener("click", () => showStep(Math.max(currentStep - 1, 0)));
+
+        studentForm.addEventListener("submit", function (event) {
+            if (!studentForm.checkValidity()) {
+                event.preventDefault();
+                const invalidField = studentForm.querySelector(":invalid");
+                const invalidStep = steps.findIndex(step => step.contains(invalidField));
+                if (invalidStep >= 0) showStep(invalidStep);
+                invalidField?.reportValidity();
+                return;
+            }
+            predictButton.disabled = true;
+            predictButton.style.opacity = "0.75";
+            predictButton.innerHTML = "Generating Prediction...";
+        });
+
+        // Theme preference is saved in this browser and restored on return.
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = document.getElementById("themeIcon");
+        const themeLabel = themeToggle.querySelector(".theme-toggle-label");
+        function applyTheme(theme) {
+            const dark = theme === "dark";
+            document.body.classList.toggle("dark-theme", dark);
+            themeIcon.textContent = dark ? "☀️" : "🌙";
+            themeLabel.textContent = dark ? "Light mode" : "Dark mode";
+            themeToggle.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+        }
+        applyTheme(localStorage.getItem("edupredict-theme") || "light");
+        themeToggle.addEventListener("click", () => {
+            const nextTheme = document.body.classList.contains("dark-theme") ? "light" : "dark";
+            localStorage.setItem("edupredict-theme", nextTheme);
+            applyTheme(nextTheme);
+        });
+
+        showStep(0);
     </script>
 
 </body>
 </html>
-```
